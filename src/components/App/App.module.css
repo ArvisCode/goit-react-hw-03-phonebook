@@ -1,0 +1,22 @@
+.container {
+  width: 768px;
+  margin: 0 auto;
+  padding: 0 10px 100px 10px;
+}
+
+.title {
+  font-size: 36px;
+  text-transform: uppercase;
+  font-weight: 900;
+  letter-spacing: 2px;
+
+  padding: 20px 0 50px 0;
+}
+
+.subtitle {
+  font-size: 26px;
+  text-transform: uppercase;
+  font-weight: 900;
+
+  margin-bottom: 30px;
+}
