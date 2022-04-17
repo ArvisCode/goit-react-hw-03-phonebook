@@ -46,6 +46,22 @@ class App extends Component {
     );
   };
 
+  componentDidMount() {
+    const storageContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (storageContacts !== null) {
+      this.setState({
+        contacts: storageContacts,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   render() {
     const { filter } = this.state;
     const addContact = this.addContact;
@@ -53,6 +69,7 @@ class App extends Component {
     const filtredContacts = this.filtredContacts();
     const deleteContact = this.deleteContact;
     const length = this.state.contacts.length;
+    console.log(this.state);
 
     return (
       <div className={css.container}>
