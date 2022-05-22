@@ -1,6 +1,8 @@
 import PropTypes from 'prop-types';
 import { Component } from 'react';
 import css from './ContactForm.module.css';
+import { connect } from 'react-redux';
+import { addContact } from 'redux/contactsAction';
 
 class ContactForm extends Component {
   static propTypes = {
@@ -19,8 +21,8 @@ class ContactForm extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    const { onSubmit } = this.props;
-    onSubmit(this.state);
+    const { onAddContact } = this.props;
+    onAddContact(this.state);
     this.reset();
   };
 
@@ -67,4 +69,8 @@ class ContactForm extends Component {
   }
 }
 
-export default ContactForm;
+const mapDispatchToProps = dispatch => ({
+  onAddContact: contact => dispatch(addContact(contact)),
+});
+
+export default connect(null, mapDispatchToProps)(ContactForm);

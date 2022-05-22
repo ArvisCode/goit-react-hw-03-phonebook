@@ -64,7 +64,6 @@ class App extends Component {
 
   render() {
     const { filter } = this.state;
-    const addContact = this.addContact;
     const changeFilter = this.changeFilter;
     const filtredContacts = this.filtredContacts();
     const deleteContact = this.deleteContact;
@@ -74,7 +73,7 @@ class App extends Component {
     return (
       <div className={css.container}>
         <h1 className={css.title}>Phonebook</h1>
-        <ContactForm onSubmit={addContact} />
+        <ContactForm />
 
         <h2 className={css.subtitle}>Contacts</h2>
         <Filter filter={filter} changeFilter={changeFilter} />

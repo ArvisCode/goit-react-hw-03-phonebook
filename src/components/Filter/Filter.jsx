@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import css from './Filter.module.css';
+import { connect } from 'react-redux';
+import { changeFilter } from 'redux/contactsAction';
 
-function Filter({ filter, changeFilter }) {
+function Filter({ filter, onChangeFilter }) {
   return (
     <label className={css.label}>
       <p className={css.text}>Find contacts by name</p>
@@ -9,7 +11,7 @@ function Filter({ filter, changeFilter }) {
         className={css.input}
         type="text"
         value={filter}
-        onChange={changeFilter}
+        onChange={onChangeFilter}
       />
     </label>
   );
@@ -20,4 +22,12 @@ Filter.prototype = {
   changeFilter: PropTypes.func.isRequired,
 };
 
-export default Filter;
+const mapStateToProps = state => ({
+  filter: state.contacts.filter,
+});
+
+const mapDispatchToProps = dispatch => ({
+  onChangeFilter: e => dispatch(changeFilter(e.target.value)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filter);
